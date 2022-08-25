@@ -10,4 +10,5 @@ public interface AccountRepository extends JpaRepository<Account, Integer>{
 	
 	<S extends Account> S save(S entity);
 	Account findByUsernameAndPassword(String username, String password);
+	Account findByUsername(String username);
 }

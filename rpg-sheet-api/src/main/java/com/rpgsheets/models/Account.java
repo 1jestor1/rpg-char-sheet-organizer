@@ -3,13 +3,16 @@ package com.rpgsheets.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rpgaccounts")
+@Table(name="rpgaccount")
 public class Account {
 
 
@@ -17,6 +20,8 @@ public class Account {
 //fields
 	@Id
 	@Column(name="id")
+	@GeneratedValue(generator="rpgaccount_id_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(allocationSize=1, name="rpgaccount_id_seq")
 	private int id;
 	
 	@Column(name="username")
@@ -27,11 +32,17 @@ public class Account {
 
 	
 	//constructors
+	public Account() {}
+	
 	public Account(int id, String username, String password) {
-		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+	}
+	
+	public Account(String username, String password) {
+		this.username=username;
+		this.password=password;
 	}
 	
 	//getters and setters
