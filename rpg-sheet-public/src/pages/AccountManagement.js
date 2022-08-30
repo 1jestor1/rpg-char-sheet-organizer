@@ -1,31 +1,32 @@
 import React from "react";
 import axios from "axios";
 import { Nav } from "../components/nav";
+import {Navigate} from "react-router";
 
 
 const loginuri ='http://localhost:8080/account/login'
 
 export function SendLogin(){
-    const [post, setPost] = React.useState(null);
+    const [status, setStatus] = React.useState(null);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createPost(username, password);
+        loginRequest(username, password);
     };
 
-    function createPost() {
+    function loginRequest() {
         axios.post(loginuri, {
             username:username,
             password:password
         }, {headers: {'Content-Type': 'application/json'},withCredentials:true})
         .then((response) => {
-            setPost(response.data);
+            setStatus(response.data);
             console.log(response.data);
         });
     }
-    if(post==null){
+    if(status==null){
     return (
         <div>
             <Nav/>
@@ -41,17 +42,11 @@ export function SendLogin(){
             </form>
         </div>
     );}
-    if(post=='good-login'){
-        return (
-        <div>
-            <Nav/>
-            {post}
-        </div>);
-    }
+    if(status=='good-login') return <Navigate to="/"/>
     return (
         <div>
             <Nav/>
-            {post}
+            {status}
             <form onSubmit={(e) => {handleSubmit(e)}}>
                 <div>
                     <label htmlFor="username">username: </label>
@@ -66,6 +61,10 @@ export function SendLogin(){
     )
 
 }
+
+export function CreateAccount(){
+}
+
 
 export function CheckSession(){
     const [post,setPost]=React.useState(null);

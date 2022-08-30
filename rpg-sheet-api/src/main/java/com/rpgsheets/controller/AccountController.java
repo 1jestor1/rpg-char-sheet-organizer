@@ -1,6 +1,5 @@
 package com.rpgsheets.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +20,22 @@ public class AccountController {
 	AccountService accountService;
 	
 	@RequestMapping(path="/login")
-	public String accountLogin(@RequestBody Account account, HttpServletRequest request) {	
-		return this.accountService.accountLogin(account,request);				
+	public String accountLogin(@RequestBody Account account, HttpSession session) {	
+		return this.accountService.accountLogin(account,session);				
+	}
+	
+	@RequestMapping(path="/logout")
+	public String accountLogout(HttpSession session) {
+		return this.accountService.accountLogout(session);
+	}
+	
+	@RequestMapping(path="/create")
+	public String accountCreate(@RequestBody Account account, HttpSession session) {
+		return this.accountService.accountCreation(account, session);
 	}
 	
 	@RequestMapping(path="/checkSession")
-	public String checkSession(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String checkSession(HttpSession session) {
 		return "the account id is " + session.getAttribute("accountid");
 	}
 	
