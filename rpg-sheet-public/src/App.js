@@ -43,8 +43,7 @@ function View() {
   sheets.push(new CharSheet('McKewl', 'https://media.istockphoto.com/photos/cute-panda-bear-climbing-in-tree-picture-id523761634?k=20&m=523761634&s=612x612&w=0&h=fycQb31QlRoNLdJWWddooJ94a-54YLYQ3ggTLPkhvmk='));
   sheets.push(new CharSheet('Birb', 'https://images.pexels.com/photos/53977/eagle-owl-raptor-falconry-owl-53977.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'));
   
-  //this is a helper method so that we can render a new section easily and give each 
-  //section the specified props 
+ 
   function renderSection(sectionId, name, url) {
     return (
       <Section
@@ -75,14 +74,10 @@ export function Site(){
   );
 }
 
-export function Login(){
-  return(
-    <p>Please log in.</p>
-  );
-}
 export function CreateAccount(){
   return(
     <div>
+      <Nav/>
       <h1>Account Creation</h1>
       <p>Please create an account.</p>
     </div>

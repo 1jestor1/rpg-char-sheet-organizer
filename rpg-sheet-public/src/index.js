@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {Site,Login, CreateAccount} from './App';
+import {Site, CreateAccount} from './App';
+import { CheckSession, SendLogin} from './pages/AccountManagement';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -12,8 +13,9 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Site/>}/>
-        <Route path="/gate" element={<Login/>}/>
+        <Route path="/gate" element={<SendLogin/>}/>
         <Route path="/gate/create" element={<CreateAccount/>}/>
+        <Route path="/checksession" element={<CheckSession/>}/>
       </Routes>
     </BrowserRouter>
 </div>

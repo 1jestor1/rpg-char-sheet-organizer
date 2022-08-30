@@ -12,6 +12,9 @@ export function Nav(){
                 <li className='nav-item'>
                     <Link to="/gate/create">Create Account</Link>
                 </li>
+                <li className='nav-item'>
+                    <Link to ="/CheckSession">Check Session</Link>
+                </li>
             </ul>
         </nav>
     )
