@@ -14,11 +14,12 @@ public class AccountService {
 	@Autowired
 	private AccountRepository accountRepository;
 	
-	public String accountLogin(Account account, HttpSession session) {
+	public Account accountLogin(Account account, HttpSession session) {
 		Account loginAttempt = this.accountRepository.findByUsernameAndPassword(account.getUsername(),account.getPassword());
-		if(loginAttempt==null) return "BAD LOGIN";
+		if(loginAttempt==null) return null;
 		session.setAttribute("accountid", loginAttempt.getId());
-		return "GOOD LOGIN";
+		loginAttempt.setPassword(null);
+		return loginAttempt;
 	}
 	
 	public String accountCreation(Account account, HttpSession session) {

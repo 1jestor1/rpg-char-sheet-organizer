@@ -1,21 +1,22 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-export function Nav(props){
+
+export function Nav(){
+    const navigate=useNavigate();
     return(
         <div>
-            <h1>RPG Sheet Manager</h1>
+            <h1 onClick={()=>{navigate('/')}}>RPG Sheet Manager</h1>
             <nav>
-                <Link to="/">Sheet Manager</Link>
                 <ul className="navBar-nav">
                     <li className='nav-item'>
-                        <Link to="/gate">Login</Link>
+                        <p onClick={()=>{navigate('/gate')}}>Login</p>
                     </li>
                     <li className='nav-item'>
-                        <Link to="/gate/create">Create Account</Link>
+                        <p onClick={()=>{navigate('/gate/create')}}>Create Account</p>
                     </li>
                     <li className='nav-item'>
-                        <Link to ="/test">Test</Link>
+                        <p onClick={()=>{navigate('/test')}}>Test</p>
                     </li>
                 </ul>
             </nav>

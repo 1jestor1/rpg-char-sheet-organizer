@@ -20,7 +20,7 @@ public class AccountController {
 	AccountService accountService;
 	
 	@RequestMapping(path="/login")
-	public String accountLogin(@RequestBody Account account, HttpSession session) {	
+	public Account accountLogin(@RequestBody Account account, HttpSession session) {	
 		return this.accountService.accountLogin(account,session);				
 	}
 	

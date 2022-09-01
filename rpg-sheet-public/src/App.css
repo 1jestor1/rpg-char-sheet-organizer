@@ -30,6 +30,10 @@ h1{
   margin-top:0%;
 }
 
+h1:hover{
+  color:aquamarine;
+}
+
 .navBar-nav{
   list-style-type: none;
   margin: 0;
@@ -48,7 +52,7 @@ h1{
 }
 .nav-item:hover{
   background-color: rgb(78, 132, 134);
-  color: white;
+  color: aquamarine;
 }
 
 #content{
