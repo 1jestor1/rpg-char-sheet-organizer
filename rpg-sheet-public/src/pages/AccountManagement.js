@@ -1,10 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { Nav } from "../components/nav";
 import {Navigate} from "react-router";
 
 
-const loginuri ='http://localhost:8080/account/login'
+const accounturi ='http://localhost:8080/account/'
 
 export function SendLogin(){
     const [status, setStatus] = React.useState(null);
@@ -13,11 +12,11 @@ export function SendLogin(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        loginRequest(username, password);
+        loginRequest();
     };
 
     function loginRequest() {
-        axios.post(loginuri, {
+        axios.post(accounturi+"login", {
             username:username,
             password:password
         }, {headers: {'Content-Type': 'application/json'},withCredentials:true})
@@ -26,27 +25,10 @@ export function SendLogin(){
             console.log(response.data);
         });
     }
-    if(status==null){
+    if(status==='GOOD LOGIN') return <Navigate to="/"/>
     return (
         <div>
-            <Nav/>
-            <form onSubmit={(e) => {handleSubmit(e)}}>
-                <div>
-                    <label htmlFor="username">username: </label>
-                    <input id="username" name="username" onChange={(e) => setUsername(e.target.value)}/>
-                    <br/>
-                    <label htmlFor="password">password: </label>
-                    <input id="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
-                </div>
-                <button type="submit">Log In</button>
-            </form>
-        </div>
-    );}
-    if(status=='good-login') return <Navigate to="/"/>
-    return (
-        <div>
-            <Nav/>
-            {status}
+            <p id="status">{status}</p>
             <form onSubmit={(e) => {handleSubmit(e)}}>
                 <div>
                     <label htmlFor="username">username: </label>
@@ -63,21 +45,66 @@ export function SendLogin(){
 }
 
 export function CreateAccount(){
-}
+    const [status, setStatus] = React.useState(null);
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [confirmpassword, setConfirmpassword]=React.useState('');
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(password===confirmpassword){
+            createRequest();
+        }else{
+            setStatus("PASSWORDS DO NOT MATCH");
+        }
+    };
+    
+    function createRequest() {
+        axios.post(accounturi+"create", {
+            username:username,
+            password:password
+        }, {headers: {'Content-Type': 'application/json'},withCredentials:true})
+        .then((response) => {
+            setStatus(response.data);
+            console.log(response.data);
+        });}
+
+    if(status==="ACCOUNT CREATED") return <Navigate to="/"/>
+
+    return (
+        <div>
+            <p id="status">{status}</p>
+            <form onSubmit={(e) => {handleSubmit(e)}}>
+                <div>
+                    <label htmlFor="username">username: </label>
+                    <input id="username" name="username" onChange={(e) => setUsername(e.target.value)}/>
+                    <br/>
+                    <label htmlFor="password">password: </label>
+                    <input id="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
+                    <br/>
+                    <label htmlFor="confirmpassword">confirm password:</label>
+                    <input id="confirmpassword" name="confirmpassword" onChange={(e)=> setConfirmpassword(e.target.value)}/> 
+                </div>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    );
+
+    }
 
 
 export function CheckSession(){
-    const [post,setPost]=React.useState(null);
+    const [status,setStatus]=React.useState(null);
     React.useEffect(()=>{
-        axios.get('http://localhost:8080/account/checkSession',{withCredentials:true})
+        axios.get(accounturi+'checksession',{withCredentials:true})
         .then((response)=>{
-           setPost(response.data);
+           setStatus(response.data);
            console.log(response.data) 
         });
     },[]);
     return(
         <div>
-            <p>Can't even anymore</p>
+            <p>{status}</p>
         </div>
     );
 }

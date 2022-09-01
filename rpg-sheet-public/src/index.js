@@ -1,21 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import {Site, CreateAccount} from './App';
-import { CheckSession, SendLogin} from './pages/AccountManagement';
+import {Site, CreateAccountScreen,LoginAccountScreen,TestScreen} from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <div>
-    <h1>RPG SHEET MANAGER</h1>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Site/>}/>
-        <Route path="/gate" element={<SendLogin/>}/>
-        <Route path="/gate/create" element={<CreateAccount/>}/>
-        <Route path="/checksession" element={<CheckSession/>}/>
+        <Route path="/gate" element={<LoginAccountScreen/>}/>
+        <Route path="/gate/create" element={<CreateAccountScreen/>}/>
+        <Route path="/test" element={<TestScreen/>}/>
       </Routes>
     </BrowserRouter>
 </div>

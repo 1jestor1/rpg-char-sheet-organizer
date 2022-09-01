@@ -16,20 +16,20 @@ public class AccountService {
 	
 	public String accountLogin(Account account, HttpSession session) {
 		Account loginAttempt = this.accountRepository.findByUsernameAndPassword(account.getUsername(),account.getPassword());
-		if(loginAttempt==null) return "bad-login";
+		if(loginAttempt==null) return "BAD LOGIN";
 		session.setAttribute("accountid", loginAttempt.getId());
-		return "good-login";
+		return "GOOD LOGIN";
 	}
 	
 	public String accountCreation(Account account, HttpSession session) {
 		session.invalidate();
-		if(accountRepository.findByUsername(account.getUsername())==null) return "username-already-in-use";
+		if(accountRepository.findByUsername(account.getUsername())==null) return "USERNAME TAKEN";
 		accountRepository.save(account);
-		return "account-created";
+		return "ACCOUNT CREATED";
 	}
 	
 	public String accountLogout(HttpSession session) {
 		session.invalidate();
-		return "logged-out";
+		return "LOGGED OUT";
 	}
 }

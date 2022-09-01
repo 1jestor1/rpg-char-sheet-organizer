@@ -34,7 +34,7 @@ public class AccountController {
 		return this.accountService.accountCreation(account, session);
 	}
 	
-	@RequestMapping(path="/checkSession")
+	@RequestMapping(path="/checksession")
 	public String checkSession(HttpSession session) {
 		return "the account id is " + session.getAttribute("accountid");
 	}

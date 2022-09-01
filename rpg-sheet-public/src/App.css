@@ -14,3 +14,45 @@
   row-gap: 1em;
   justify-content: center;
 }
+
+body{
+  background-color: black;
+  color:azure;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  margin: 0;
+}
+
+h1{
+  text-decoration: underline;
+  font-variant: small-caps;
+  font-weight: 700;
+  margin-left: 50%;
+  margin-top:0%;
+}
+
+.navBar-nav{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width:10%;
+  height:100%;
+  position:fixed;
+  overflow: auto;
+}
+
+.nav-item{
+  display:block;
+  background-color: cadetblue;
+  border:2px solid rgb(78, 132, 134);
+  text-decoration: none;
+}
+.nav-item:hover{
+  background-color: rgb(78, 132, 134);
+  color: white;
+}
+
+#content{
+  margin-left: 10%;
+  padding: 1px 16px;
+  height:100%;
+}

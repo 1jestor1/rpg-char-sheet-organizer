@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import {Nav} from './components/nav'
+import {CreateAccount,SendLogin,CheckSession} from './pages/AccountManagement'
 
 class CharSheet{
   constructor(name,url){
@@ -28,7 +29,6 @@ export function Section(props) {
   } else {
     return (
       <div>
-        <Nav/>
         <p>Additional info!</p>
       </div>
     );
@@ -69,17 +69,45 @@ export function Site(){
   return(
     <div>
       <Nav/>
-      <View/>
+      <div id="content">
+        <View/>
+      </div>
     </div>
   );
 }
 
-export function CreateAccount(){
+export function CreateAccountScreen(){
   return(
     <div>
       <Nav/>
-      <h1>Account Creation</h1>
-      <p>Please create an account.</p>
+      <div id="content">
+        <h2>Account Creation</h2>
+        <p>Please create an account.</p>
+        <CreateAccount/>
+      </div>
     </div>
   )
+}
+
+export function LoginAccountScreen(){
+  return(
+    <div>
+      <Nav/>
+      <div id="content">
+        <h2>Account Login</h2>
+        <p>Please login to your account.</p>
+        <SendLogin/>
+      </div>
+    </div>)
+}
+
+export function TestScreen(){
+  return(
+    <div>
+      <Nav/>
+      <div id="content">
+        <h2>Current Test: JSession</h2>
+        <CheckSession/>
+      </div>
+    </div>)
 }
