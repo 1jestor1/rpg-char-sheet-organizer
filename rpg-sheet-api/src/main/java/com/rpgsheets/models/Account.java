@@ -1,5 +1,7 @@
 package com.rpgsheets.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,9 +17,7 @@ import javax.persistence.Table;
 @Table(name="rpgaccount")
 public class Account {
 
-
-
-//fields
+	//fields
 	@Id
 	@Column(name="id")
 	@GeneratedValue(generator="rpgaccount_id_seq", strategy = GenerationType.AUTO)
@@ -29,15 +29,19 @@ public class Account {
 	
 	@Column(name="password")
 	private String password;
-
 	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn
+	private Set<Sheet> sheets;
+
 	//constructors
 	public Account() {}
 	
-	public Account(int id, String username, String password) {
+	public Account(int id, String username, String password, Set<Sheet> sheets) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.sheets=sheets;
 	}
 	
 	public Account(String username, String password) {
@@ -73,5 +77,13 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Set<Sheet> getSheets() {
+		return sheets;
+	}
+
+	public void setSheets(Set<Sheet> sheets) {
+		this.sheets = sheets;
 	}
 }
